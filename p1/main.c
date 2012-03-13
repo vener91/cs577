@@ -100,6 +100,8 @@ int main(int argc, char *argv[]){
 				switch(action){
 					case 0:
 						ss_insert(ss, key);
+						//do typical number of skipped nodes
+						
 						break;
 					case 1:
 						ss_contains(ss, key);
@@ -145,7 +147,9 @@ int main(int argc, char *argv[]){
 						e3->data = key;
 						int res = indexOf(&list, *e3);
 						if(res > 0){
-							removeAt(&list, res);
+							Element x = list.elements[res];
+							//printf("%d\n", x.data);
+							//removeAt(&list, res);
 						}
 						break;
 				}

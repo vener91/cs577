@@ -97,6 +97,28 @@ void print_skipset(SkipSet* ss) {
     printf("}\n");
 }
 
+int ss_countskip(SkipSet* ss, int search_value) {
+    int i;
+	int ncount;
+	int rcount;
+    SkipNode* x = ss->header;
+    for(i = ss->level; i >= 0; i--) {
+        while(x->forward[i] != NULL && x->forward[i]->value < search_value) {
+            x = x->forward[i];
+			ncount++;
+        }
+    }
+    x = x->forward[0];
+	ncount++;
+
+	x = ss->header;
+	while(x->forward[0] != NULL && x->forward[0]->value < search_value){
+		x = x->forward[0];
+		rcount++;
+	}
+    return rcount - ncount;   
+}
+
 int ss_contains(SkipSet* ss, int search_value) {
     int i;
     SkipNode* x = ss->header;
@@ -146,6 +168,7 @@ void ss_insert(SkipSet* ss, int value) {
 
     }
 }
+
 
 void ss_delete(SkipSet* ss, int value) {
     int i;
