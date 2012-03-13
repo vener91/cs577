@@ -78,6 +78,7 @@ int main(int argc, char *argv[]){
 	const int MAX_LINE = 1024;
 	char in[MAX_LINE];
 
+	srand(10);
 	while(1){ //Infinity loop
 		if(fgets(in, MAX_LINE, target_stream) == NULL){
 			if(feof(target_stream)){
@@ -90,12 +91,9 @@ int main(int argc, char *argv[]){
 		}
 
 		strtok(in, "\n"); //Trick to remove new lines
-		int action = atoi(strtok(in, ":"));
-		if(action < 0 || action > 2){
-			printf("Invalid action");
-			exit(1);
-		}
-		int key = atoi(strtok(NULL, ":"));
+		int key = atoi(in);
+		int action = rand() % 3;
+		//printf("%d\n", action);
 		//printf("%d:%d:%d\n",implementation, action, key);
 		switch(implementation){
 			case 0: //Skiplist

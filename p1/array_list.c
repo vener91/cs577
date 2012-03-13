@@ -7,11 +7,11 @@
 
 void init (ArrayList *const list)
 {
-    initWithSize(list, 100);
+    initWithSize(list, 10000);
 }
 void initWithSize(ArrayList *const list, int size)
 {
-    initWithSizeAndIncRate(list, size, 50);
+    initWithSizeAndIncRate(list, size, 5000);
 }
 
 void initWithSizeAndIncRate(ArrayList *const list, int size, int rate)
