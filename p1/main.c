@@ -77,6 +77,7 @@ int main(int argc, char *argv[]){
 	//Read file
 	const int MAX_LINE = 1024;
 	char in[MAX_LINE];
+	int lastLength = 0;
 
 	srand(10);
 	while(1){ //Infinity loop
@@ -92,7 +93,8 @@ int main(int argc, char *argv[]){
 
 		strtok(in, "\n"); //Trick to remove new lines
 		int key = atoi(in);
-		int action = rand() % 3;
+		//int action = rand() % 5;
+		int action = 0;
 		//printf("%d\n", action);
 		//printf("%d:%d:%d\n",implementation, action, key);
 		switch(implementation){
@@ -101,7 +103,18 @@ int main(int argc, char *argv[]){
 					case 0:
 						ss_insert(ss, key);
 						//do typical number of skipped nodes
-						
+						//get last node
+    					SkipNode* x = ss->header;
+						int length = 0;
+						while(x->forward[0] != NULL){
+							x = x->forward[0];
+							length++;
+						}
+					//	printf("%d\n", length);
+						if (lastLength != length) {
+							printf("%d,%d\n", length, ss_countskip(ss, x->value));
+							lastLength = length;
+						}
 						break;
 					case 1:
 						ss_contains(ss, key);
@@ -115,6 +128,9 @@ int main(int argc, char *argv[]){
 				break;
 			case 1: //Linked list
 				switch(action){
+					case 3:
+					case 5:
+					case 4:
 					case 0:
 						ll_insert(ll, key);
 						//ll_print(ll);
@@ -129,6 +145,9 @@ int main(int argc, char *argv[]){
 				break;
 			case 2: //Array
 				switch(action){
+					case 3:
+					case 5:
+					case 4:
 					case 0:
 						;
 						Element* e = malloc(sizeof(Element));
@@ -149,7 +168,7 @@ int main(int argc, char *argv[]){
 						if(res > 0){
 							Element x = list.elements[res];
 							//printf("%d\n", x.data);
-							//removeAt(&list, res);
+							removeAt(&list, res);
 						}
 						break;
 				}

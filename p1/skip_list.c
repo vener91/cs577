@@ -99,8 +99,8 @@ void print_skipset(SkipSet* ss) {
 
 int ss_countskip(SkipSet* ss, int search_value) {
     int i;
-	int ncount;
-	int rcount;
+	int ncount = 0;
+	int rcount = 0;
     SkipNode* x = ss->header;
     for(i = ss->level; i >= 0; i--) {
         while(x->forward[i] != NULL && x->forward[i]->value < search_value) {

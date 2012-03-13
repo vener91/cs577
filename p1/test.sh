@@ -6,17 +6,17 @@ echo "Skiplist"
 for i in "${testVal[@]}"
 do
 	/usr/bin/time main -i 0 -d ./sample/u_$i 2>> ./results/skiplist
-	#cat ./results/skiplist | grep elapsed | awk '{ print $3 }' | sed s/elapsed//g > ./results/skiplist 
+	cat ./results/skiplist | grep elapsed | awk '{ print $3 }' | sed s/elapsed//g > ./results/skiplist 
 done
 echo "Linked List"
 for i in "${testVal[@]}"
 do
 	/usr/bin/time main -i 1 -d ./sample/u_$i 2>> ./results/linkedlist
-	#cat ./results/linkedlist | grep elapsed | awk '{ print $3 }' | sed s/elapsed//g > ./results/linkedlist 
+	cat ./results/linkedlist | grep elapsed | awk '{ print $3 }' | sed s/elapsed//g > ./results/linkedlist2 
 done
 echo "Array List"
 for i in "${testVal[@]}"
 do
 	/usr/bin/time main -i 2 -d ./sample/u_$i 2>> ./results/arraylist
-	#cat ./results/arraylist | grep elapsed | awk '{ print $3 }' | sed s/elapsed//g > ./results/arraylist 
+	cat ./results/arraylist | grep elapsed | awk '{ print $3 }' | sed s/elapsed//g > ./results/arraylist2
 done
